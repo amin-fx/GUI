@@ -23,15 +23,42 @@ convertor_options.grid(row=2, column=3)
 answer_lbl = Label(root, text="", font=("Arial", 10, 'bold'))
 answer_lbl.grid(column=2, row=4)
 
+counter = 0
+
 
 # Temperature convertor formula = 5 * (f-32) / 9 Or c*9/5 + 32
 def convertor():
+
     try:
+        global counter
+        if counter == 0:
+            global gram_lbl, tone_lbl, pound_lbl, ounce_lbl
+            gram_lbl = Label(root, text="Gram")
+            tone_lbl = Label(root, text="Tone")
+            pound_lbl = Label(root, text="Pound")
+            ounce_lbl = Label(root, text="Ounce")
+
+            global gram_txt, tone_txt, pound_txt, ounce_txt
+            gram_txt = Text(root, width=30, height=5)
+            tone_txt = Text(root, width=30, height=5)
+            pound_txt = Text(root, width=30, height=5)
+            ounce_txt = Text(root, width=30, height=5)
+
+            # print(counter)
+
         if option_text.get() == "Fahrenheit to celsius":
             temp = float(input.get())
             temp_c = 5 * (temp - 32) / 9
             answer_lbl["text"] = f"Temperature in celcius : {str(int(temp_c))}"
             input.delete(0, END)
+            gram_lbl.destroy()
+            gram_txt.destroy()
+            tone_lbl.destroy()
+            tone_txt.destroy()
+            pound_lbl.destroy()
+            pound_txt.destroy()
+            ounce_lbl.destroy()
+            ounce_txt.destroy()
 
         elif option_text.get() == "Kg to other weights":
             answer_lbl["text"] = ""
@@ -40,10 +67,6 @@ def convertor():
             tone_weight = kg_weight/1000
             pound_weight = kg_weight * 2.2046
             ounce_weight = kg_weight * 35.274
-            gram_lbl = Label(root, text="Gram")
-            tone_lbl = Label(root, text="Tone")
-            pound_lbl = Label(root, text="Pound")
-            ounce_lbl = Label(root, text="Ounce")
             gram_lbl.grid(column=1, row=5)
             tone_lbl.grid(column=2, row=5)
             pound_lbl.grid(column=3, row=5)
@@ -61,6 +84,8 @@ def convertor():
             pound_txt.grid(column=3, row=6)
             ounce_txt.grid(column=4, row=6)
             input.delete(0, END)
+            counter += 1
+            print(counter)
 
         else:
             answer_lbl["text"] = "Invalid option"
