@@ -1,6 +1,7 @@
 # Import essential modules
 from tkinter import *
 from tkinter import messagebox
+# import cx_Freeze
 
 # Define a window
 root = Tk()
@@ -28,9 +29,9 @@ counter = 0
 
 # Temperature convertor formula = 5 * (f-32) / 9 Or c*9/5 + 32
 def convertor():
+    global counter
 
     try:
-        global counter
         if counter == 0:
             global gram_lbl, tone_lbl, pound_lbl, ounce_lbl
             gram_lbl = Label(root, text="Gram")
@@ -43,8 +44,7 @@ def convertor():
             tone_txt = Text(root, width=30, height=5)
             pound_txt = Text(root, width=30, height=5)
             ounce_txt = Text(root, width=30, height=5)
-
-            # print(counter)
+            # print(f" counter = {counter} in main ")
 
         if option_text.get() == "Fahrenheit to celsius":
             temp = float(input.get())
@@ -60,9 +60,13 @@ def convertor():
             ounce_lbl.destroy()
             ounce_txt.destroy()
 
+            counter = 0
+            # print(f" counter = {counter} in C -> F ")
+
+
         elif option_text.get() == "Kg to other weights":
-            answer_lbl["text"] = ""
             kg_weight = float(input.get())
+            answer_lbl["text"] = f"Converting {kg_weight} KG :"
             gram_weight = kg_weight * 1000
             tone_weight = kg_weight/1000
             pound_weight = kg_weight * 2.2046
@@ -71,13 +75,13 @@ def convertor():
             tone_lbl.grid(column=2, row=5)
             pound_lbl.grid(column=3, row=5)
             ounce_lbl.grid(column=4, row=5)
-            gram_txt = Text(root, width=30, height=5)
-            tone_txt = Text(root, width=30, height=5)
-            pound_txt = Text(root, width=30, height=5)
-            ounce_txt = Text(root, width=30, height=5)
+            gram_txt.delete(1.0, END)
             gram_txt.insert(END, str(gram_weight))
+            tone_txt.delete(1.0, END)
             tone_txt.insert(END, str(tone_weight))
+            pound_txt.delete(1.0, END)
             pound_txt.insert(END, str(pound_weight))
+            ounce_txt.delete(1.0, END)
             ounce_txt.insert(END, str(ounce_weight))
             gram_txt.grid(column=1, row=6)
             tone_txt.grid(column=2, row=6)
@@ -85,7 +89,7 @@ def convertor():
             ounce_txt.grid(column=4, row=6)
             input.delete(0, END)
             counter += 1
-            print(counter)
+            # print(f" counter = {counter} in KG ")
 
         else:
             answer_lbl["text"] = "Invalid option"
