@@ -18,7 +18,7 @@ input.grid(row=2, column=2)
 
 option_text = StringVar()
 option_text.set("Select an option")
-convertor_options = OptionMenu(root, option_text, *["Fahrenheit to celsius", "Kg to other weights"])
+convertor_options = OptionMenu(root, option_text, *["Fahrenheit to celsius", "Kg to other weights", "Feet to meter"])
 convertor_options.grid(row=2, column=3)
 
 answer_lbl = Label(root, text="", font=("Arial", 10, 'bold'))
@@ -63,6 +63,21 @@ def convertor():
             counter = 0
             # print(f" counter = {counter} in C -> F ")
 
+        elif option_text.get() == "Feet to meter":
+            feet_input = float(input.get())
+            meter = feet_input * 0.3084
+            answer_lbl["text"] = f"Height in meter : {str(meter)}"
+            input.delete(0, END)
+            gram_lbl.destroy()
+            gram_txt.destroy()
+            tone_lbl.destroy()
+            tone_txt.destroy()
+            pound_lbl.destroy()
+            pound_txt.destroy()
+            ounce_lbl.destroy()
+            ounce_txt.destroy()
+
+            counter = 0
 
         elif option_text.get() == "Kg to other weights":
             kg_weight = float(input.get())
