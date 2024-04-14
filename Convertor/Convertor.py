@@ -65,7 +65,7 @@ def convertor():
 
         elif option_text.get() == "Feet to meter":
             feet_input = float(input.get())
-            meter = feet_input * 0.3084
+            meter = (feet_input * 0.3084)
             answer_lbl["text"] = f"Height in meter : {str(meter)}"
             input.delete(0, END)
             gram_lbl.destroy()
@@ -92,12 +92,16 @@ def convertor():
             ounce_lbl.grid(column=4, row=5)
             gram_txt.delete(1.0, END)
             gram_txt.insert(END, str(gram_weight))
+            gram_txt.config(state=DISABLED)
             tone_txt.delete(1.0, END)
             tone_txt.insert(END, str(tone_weight))
+            tone_txt.config(state=DISABLED)
             pound_txt.delete(1.0, END)
             pound_txt.insert(END, str(pound_weight))
+            pound_txt.config(state=DISABLED)
             ounce_txt.delete(1.0, END)
             ounce_txt.insert(END, str(ounce_weight))
+            ounce_txt.config(state=DISABLED)
             gram_txt.grid(column=1, row=6)
             tone_txt.grid(column=2, row=6)
             pound_txt.grid(column=3, row=6)
